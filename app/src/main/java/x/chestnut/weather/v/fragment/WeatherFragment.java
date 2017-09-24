@@ -23,6 +23,8 @@ import x.chestnut.weather.v.recyclerView.adapter.SimpleAdapter;
 import x.chestnut.weather.v.recyclerView.decoration.SpacesItemDecoration;
 import x.chestnut.weather.v.recyclerView.item.OtherDayBrfItem;
 import x.chestnut.weather.v.recyclerView.item.ToadyBrfItem;
+import x.chestnut.weather.v.recyclerView.item.TodayDetailItem;
+import x.chestnut.weather.v.recyclerView.item.TodaySuggestionItem;
 
 /**
  * <pre>
@@ -51,7 +53,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.V{
     private MaterialRefreshListener materialRefreshListener = new MaterialRefreshListener() {
         @Override
         public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-            refreshLayout.finishRefresh();
+            weatherPresenter.update();
         }
     };
 
@@ -126,16 +128,33 @@ public class WeatherFragment extends Fragment implements WeatherContract.V{
 
     @Override
     public void notifyUpdateEnd(WBean wBean) {
+        refreshLayout.finishRefresh();
         if (WeatherFragment.this.getView()!=null)
             TSnackbar.make(WeatherFragment.this.getView(),"o(*￣▽￣*)ブ...",TSnackbar.LENGTH_LONG).show();
         if (wBean!=null) {
+            if (simpleAdapter.getItemCount()>0) {
+                simpleAdapter.clear();
+            }
             if (wBean.today!=null) {
                 simpleAdapter.add(new ToadyBrfItem(wBean));
+                simpleAdapter.add(new TodayDetailItem(wBean));
             }
             if (wBean.dailyForecastBeanList!=null) {
-                for (WBean.DailyForecastBean d : wBean.dailyForecastBeanList) {
+                for (int i = 0; i < wBean.dailyForecastBeanList.size(); i++) {
+                    WBean.DailyForecastBean d = wBean.dailyForecastBeanList.get(i);
+                    switch (i) {
+                        case 0:
+                            d.date = getString(R.string.today);
+                            break;
+                        case 1:
+                            d.date = getString(R.string.tomorrow);
+                            break;
+                    }
                     simpleAdapter.add(new OtherDayBrfItem(d));
                 }
+            }
+            if (wBean.today!=null) {
+                simpleAdapter.add(new TodaySuggestionItem(wBean.today));
             }
             simpleAdapter.notifyDataSetChanged();
         }

@@ -3,6 +3,7 @@ package x.chestnut.weather.v.recyclerView.item;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chestnut.Common.ui.recyclerView.XHolder;
@@ -41,6 +42,22 @@ public class ToadyBrfItem extends XItem<WBean>{
     @Override
     public void onBindViewHolder(XHolder xHolder, int i) {
         Context context = xHolder.getItemHoldView().getContext();
+        //天气bg
+        ImageView imageView = (ImageView) xHolder.getViewById(R.id.img_weather_brf);
+        switch (data.today.code) {
+            case "100"://晴天
+            case "102"://少云
+            case "103"://晴间多云
+                imageView.setImageResource(R.drawable.city_bg_sunny);
+                break;
+            case "101"://多云
+            case "104"://阴天
+                imageView.setImageResource(R.drawable.city_bg_cloudy);
+                break;
+            default:
+                imageView.setImageResource(R.drawable.city_bg_rainy);
+                break;
+        }
         //城市
         ((TextView)xHolder.getViewById(R.id.txt_city)).setText(data.cityName);
         //当前温度

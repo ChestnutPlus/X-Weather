@@ -133,8 +133,6 @@ public class WBean {
             if (heWeather5Bean.daily_forecast!=null) {
                 List<DailyForecastBean> l = new ArrayList<>();
                 for (x.chestnut.weather.m.bean.WeatherRawBean.HeWeather5Bean.DailyForecastBean d : heWeather5Bean.daily_forecast) {
-                    if (d.date.equalsIgnoreCase(today.date))
-                        continue;
                     DailyForecastBean dx = new DailyForecastBean();
                     dx.date = d.date;
                     dx.updateTimestampMs = System.currentTimeMillis();

@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">X-Weather</string>
+    <string name="app_name">X-天气</string>
     <string name="item_toady_brf_now_temp">{x}°</string>
     <string name="item_today_brf_weather_brf">{x} | {y}</string>
     <string name="item_today_brf_update_time">上一次更新时间：{x}</string>
+    <string name="item_today_detail_temp">体感温度\n{x}°</string>
+    <string name="item_today_detail_shidu">相对湿度\n{x}%</string>
+    <string name="item_today_detail_pre">气压\n{x}Pa</string>
+    <string name="item_today_detail_rain">降水量\n{x}mm</string>
+    <string name="item_today_detail_wind_speed">风速\n{x}km/h</string>
+    <string name="item_today_detail_vis">能见度\n{x}km</string>
+    <string name="item_today_suggestion">{x}\n\n{y}</string>
+    <string name="today">今天</string>
+    <string name="tomorrow">明天</string>
 </resources>

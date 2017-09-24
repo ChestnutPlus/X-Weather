@@ -21,6 +21,8 @@ public class SimpleAdapter extends XAdapter<XItem> {
     /*在这里统一Item的类型*/
     public static final int TYPE_ITEM_TODAY_BRF = 0;
     public static final int TYPE_ITEM_OTHER_DAY_BRF = 1;
+    public static final int TYPE_ITEM_TODAY_DETAIL = 2;
+    public static final int TYPE_ITEM_TODAY_SUGGESTION = 3;
 
 
     /**

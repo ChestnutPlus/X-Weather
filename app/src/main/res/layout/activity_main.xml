@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/view_pager"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="x.chestnut.weather.v.activity.MainActivity"/>
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.CardView
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        app:cardElevation="25dp"
+        app:cardCornerRadius="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:id="@+id/txt_add"
+                android:layout_marginStart="5dp"
+                android:padding="10dp"
+                android:clickable="true"
+                android:src="@drawable/ic_option"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_indicator"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v4.view.ViewPager
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:id="@+id/view_pager"
+        android:layout_above="@id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>
+

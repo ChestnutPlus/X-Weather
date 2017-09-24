@@ -70,7 +70,16 @@ public class WeatherPresenter implements WeatherContract.P {
 
     @Override
     public void update() {
-
+        subscription = Net.updateWeatherData(wBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aBoolean -> {
+                    mView.notifyUpdateEnd(wBean);
+                    subscription = null;
+                },throwable -> {
+                    mView.notifyUpdateEnd(wBean);
+                    subscription = null;
+                });
     }
 
     @Override
